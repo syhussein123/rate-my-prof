@@ -1,6 +1,6 @@
 'use client'
 import { Box, Button, Stack, TextField } from '@mui/material'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -10,8 +10,10 @@ export default function Home() {
   },
 ])
 const [message, setMessage] = useState('')
+const [loading, setLoading] = useState(false);
 
 const sendMessage = async () => {
+  if (!message.trim()) return;
   setMessage('')
   setMessages((messages) => [
     ...messages,
@@ -19,34 +21,48 @@ const sendMessage = async () => {
     {role: 'assistant', content: ''},
   ])
 
-  const response = fetch('/api/chat', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify([...messages, {role: 'user', content: message}]),
-  }).then(async (res) => {
-    const reader = res.body.getReader()
-    const decoder = new TextDecoder()
-    let result = ''
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([...messages, { role: "user", content: message }]),
+    });
 
-    return reader.read().then(function processText({done, value}) {
-      if (done) {
-        return result
-      }
-      const text = decoder.decode(value || new Uint8Array(), {stream: true})
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+
+    let result = "";
+    await reader.read().then(function processText({ done, value }) {
+      if (done) return result;
+
+      const text = decoder.decode(value || new Uint8Array(), {
+        stream: true,
+      });
+
+      result += text
+
       setMessages((messages) => {
-        let lastMessage = messages[messages.length - 1]
-        let otherMessages = messages.slice(0, messages.length - 1)
-        return [
-          ...otherMessages,
-          {...lastMessage, content: lastMessage.content + text},
-        ]
-      })
-      return reader.read().then(processText)
-    })
-  })
-}
+        const updatedMessages = [...messages];
+        const lastMessage = updatedMessages[updatedMessages.length - 1];
+        lastMessage.content = result;
+        return updatedMessages;
+      });
+
+      return reader.read().then(processText);
+    });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    setMessages((messages) => [
+      ...messages,
+      {
+        role: "assistant",
+        content: "Sorry, something went wrong. Please try again.",
+      },
+    ]);
+  }
+};
 
 return (
   <Box
