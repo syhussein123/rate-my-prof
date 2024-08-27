@@ -6,6 +6,7 @@ import google.generativeai as genai
 import os
 import json
 
+
 # Initialize Pinecone
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 
