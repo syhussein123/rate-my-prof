@@ -1,0 +1,125 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. John Smith",
+        "review": "Very knowledgeable and engaging lectures. Sometimes a bit fast-paced.",
+        "subject": "Introduction to Computer Science",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Emily Johnson",
+        "review": "Makes difficult concepts easy to understand. Assignments are challenging but fair.",
+        "subject": "Calculus I",
+        "stars": 5
+      },
+      {
+        "professor": "Dr. Michael Brown",
+        "review": "Great at explaining theories, but not very approachable outside of class.",
+        "subject": "Organic Chemistry",
+        "stars": 3
+      },
+      {
+        "professor": "Dr. Susan Lee",
+        "review": "Passionate about the subject, but sometimes gets off-topic.",
+        "subject": "Modern European History",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Robert Wilson",
+        "review": "Lectures are clear and concise. The exams are tough but manageable.",
+        "subject": "Physics II",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Karen Davis",
+        "review": "Encourages student participation and critical thinking. A bit too much reading.",
+        "subject": "Introduction to Philosophy",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. James Garcia",
+        "review": "Knows the subject well but the lectures can be dry.",
+        "subject": "Macroeconomics",
+        "stars": 3
+      },
+      {
+        "professor": "Dr. Patricia Martinez",
+        "review": "Very supportive and offers helpful feedback on assignments.",
+        "subject": "Creative Writing",
+        "stars": 5
+      },
+      {
+        "professor": "Dr. Thomas Anderson",
+        "review": "Tough grader but you learn a lot. Be prepared to work hard.",
+        "subject": "Data Structures",
+        "stars": 3
+      },
+      {
+        "professor": "Dr. Linda Rodriguez",
+        "review": "Energetic and passionate, but the material is quite dense.",
+        "subject": "Biochemistry",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Mark Hernandez",
+        "review": "The lectures are interesting, but the tests are tricky.",
+        "subject": "Psychology 101",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Barbara Lewis",
+        "review": "Provides a lot of resources, but the course is very fast-paced.",
+        "subject": "Microeconomics",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Richard Clark",
+        "review": "Very knowledgeable but not the most engaging lecturer.",
+        "subject": "Electrical Engineering",
+        "stars": 3
+      },
+      {
+        "professor": "Dr. Jennifer Walker",
+        "review": "Encourages creative thinking and class discussions. A bit disorganized at times.",
+        "subject": "Art History",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Charles King",
+        "review": "Challenging exams, but gives plenty of resources to succeed.",
+        "subject": "Advanced Mathematics",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Jessica Scott",
+        "review": "Engaging lectures, but the workload is heavy.",
+        "subject": "Sociology 101",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Daniel Lopez",
+        "review": "Very clear and helpful. Office hours are very useful.",
+        "subject": "Linear Algebra",
+        "stars": 5
+      },
+      {
+        "professor": "Dr. Nancy Adams",
+        "review": "The material is tough, but the professor is very supportive.",
+        "subject": "Genetics",
+        "stars": 4
+      },
+      {
+        "professor": "Dr. Christopher Miller",
+        "review": "Excellent professor. The lectures are fascinating and well-organized.",
+        "subject": "World Literature",
+        "stars": 5
+      },
+      {
+        "professor": "Dr. Elizabeth White",
+        "review": "Very strict with deadlines, but provides clear instructions.",
+        "subject": "Business Management",
+        "stars": 4
+      }
+    ]
+  }
+  

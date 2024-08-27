@@ -20,7 +20,7 @@ pc.create_index(
 data = json.load(open("reviews.json"))
 
 processed_data = []
-client = OpenAI()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Create embeddings for each review
 for review in data["reviews"]:
