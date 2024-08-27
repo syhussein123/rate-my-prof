@@ -2,16 +2,20 @@ from dotenv import load_dotenv
 load_dotenv()
 from pinecone import Pinecone, ServerlessSpec
 from openai import OpenAI
+import google.generativeai as genai
 import os
 import json
 
 # Initialize Pinecone
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
+
 # Create a Pinecone index
 pc.create_index(
     name="rag",
-    dimension=1536,
+    dimension=768,
     metric="cosine",
     spec=ServerlessSpec(cloud="aws", region="us-east-1"),
 )
@@ -20,25 +24,26 @@ pc.create_index(
 data = json.load(open("reviews.json"))
 
 processed_data = []
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+#client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+#hf_embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-# Create embeddings for each review
-for review in data["reviews"]:
-    response = client.embeddings.create(
-        input=review['review'], model="text-embedding-3-small"
-    )
-    embedding = response.data[0].embedding
-    processed_data.append(
-        {
-            "values": embedding,
-            "id": review["professor"],
-            "metadata":{
-                "review": review["review"],
-                "subject": review["subject"],
-                "stars": review["stars"],
-            }
+for review in data['reviews']:
+    result = genai.embed_content(
+        model="models/text-embedding-004",
+        content=review['review'],
+        task_type="retrieval_document",
+        title="Embedding of single string")
+    embeddings = result['embedding']
+    
+    processed_data.append({
+        "values": embeddings,
+        "id": review['professor'],
+        "metadata":{
+            'review': review['review'],
+            'subject': review['subject'],
+            'stars': review['stars'],
         }
-    )
+    })
 
 # Insert the embeddings into the Pinecone index
 index = pc.Index("rag")
